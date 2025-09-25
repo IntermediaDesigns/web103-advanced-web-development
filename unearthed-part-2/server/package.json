@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "npm run reset && nodemon --require dotenv/config server.js",
+    "reset": "node --require dotenv/config config/reset.js"
   },
   "keywords": [],
   "author": "",
