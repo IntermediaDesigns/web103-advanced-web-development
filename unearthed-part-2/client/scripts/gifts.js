@@ -1,7 +1,13 @@
 
 const renderGifts = async () => {
-  const response = await fetch("/gifts");
-  const data = await response.json();
+  try {
+    const response = await fetch("/gifts");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
 
   const mainContent = document.getElementById("main-content");
   mainContent.innerHTML = "";
@@ -44,6 +50,14 @@ const renderGifts = async () => {
     const message = document.createElement('h2');
     message.textContent = 'No Gifts Available 😞';
     mainContent.appendChild(message);
+  }
+  } catch (error) {
+    console.error('Error loading gifts:', error);
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = "";
+    const errorMessage = document.createElement('h2');
+    errorMessage.textContent = 'Error loading gifts. Please try again later.';
+    mainContent.appendChild(errorMessage);
   }
 };
 
