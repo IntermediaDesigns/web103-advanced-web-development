@@ -13,39 +13,52 @@ const renderGifts = async () => {
   mainContent.innerHTML = "";
 
   if (data) {
+    // Create a grid container for the cards
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
     data.map(gift => {
-      const card = document.createElement('div');
-      card.className = 'card';
+      const card = document.createElement('article');
 
       const topContainer = document.createElement('div');
-      topContainer.className = 'top-container';
+      topContainer.className = 'card-image';
       topContainer.style.backgroundImage = `url(${gift.image})`;
 
       const bottomContainer = document.createElement('div');
-      bottomContainer.className = 'bottom-container';
+      bottomContainer.className = 'card-content';
 
       const name = document.createElement('h3');
       name.textContent = gift.name;
       bottomContainer.appendChild(name);
 
-      const price = document.createElement('p');
-      price.textContent = gift.pricePoint;
-      bottomContainer.appendChild(price);
+      const metaContainer = document.createElement('div');
+      metaContainer.className = 'card-meta';
 
-      const audience = document.createElement('p');
+      const price = document.createElement('div');
+      price.className = 'card-price';
+      price.textContent = gift.pricePoint;
+      metaContainer.appendChild(price);
+
+      const audience = document.createElement('div');
+      audience.className = 'card-audience';
       audience.textContent = gift.audience;
-      bottomContainer.appendChild(audience);
+      metaContainer.appendChild(audience);
+
+      bottomContainer.appendChild(metaContainer);
 
       const link = document.createElement('a');
-      link.textContent = 'Read More >';
+      link.className = 'card-button';
+      link.textContent = 'Read More';
       link.href = `/gifts/${gift.id}`;
       link.setAttribute('role', 'button');
       bottomContainer.appendChild(link);
 
       card.appendChild(topContainer);
       card.appendChild(bottomContainer);
-      mainContent.appendChild(card);
+      grid.appendChild(card);
     });
+
+    mainContent.appendChild(grid);
   } else {
     const message = document.createElement('h2');
     message.textContent = 'No Gifts Available 😞';

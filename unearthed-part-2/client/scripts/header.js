@@ -1,13 +1,18 @@
 // Select the header tag
 const header = document.querySelector('header');
 
-// Create header container
-const headerContainer = document.createElement('div');
-headerContainer.className = 'header-container';
+// Create navigation element
+const nav = document.createElement('nav');
 
-// Create left section
-const headerLeft = document.createElement('div');
-headerLeft.className = 'header-left';
+// Create first ul for brand/logo section
+const brandUl = document.createElement('ul');
+
+// Create brand li
+const brandLi = document.createElement('li');
+
+// Create brand link
+const brandLink = document.createElement('a');
+brandLink.href = '/';
 
 // Create logo image
 const headerLogo = document.createElement('img');
@@ -15,32 +20,41 @@ headerLogo.src = '/logo.png';
 headerLogo.alt = 'UnEarthed Logo';
 
 // Create title
-const headerTitle = document.createElement('h1');
+const headerTitle = document.createElement('strong');
 headerTitle.textContent = 'UnEarthed';
 
-// Append logo and title to left section
-headerLeft.appendChild(headerLogo);
-headerLeft.appendChild(headerTitle);
+// Append logo and title to brand link
+brandLink.appendChild(headerLogo);
+brandLink.appendChild(headerTitle);
 
-// Create right section
-const headerRight = document.createElement('div');
-headerRight.className = 'header-right';
+// Append brand link to brand li
+brandLi.appendChild(brandLink);
+
+// Append brand li to brand ul
+brandUl.appendChild(brandLi);
+
+// Create second ul for navigation buttons
+const navUl = document.createElement('ul');
+
+// Create navigation li
+const navLi = document.createElement('li');
 
 // Create Home button
-const headerButton = document.createElement('button');
+const headerButton = document.createElement('a');
 headerButton.textContent = 'Home';
-headerButton.addEventListener('click', function handleClick(event) {
-  window.location = '/';
-});
+headerButton.href = '/';
+headerButton.setAttribute('role', 'button');
 
-// Append button to right section
-headerRight.appendChild(headerButton);
+// Append button to nav li
+navLi.appendChild(headerButton);
 
-// Append left and right sections to container
-headerContainer.appendChild(headerLeft);
-headerContainer.appendChild(headerRight);
+// Append nav li to nav ul
+navUl.appendChild(navLi);
 
+// Append both uls to nav
+nav.appendChild(brandUl);
+nav.appendChild(navUl);
 
-// Append container to header
-header.appendChild(headerContainer);
+// Append nav to header
+header.appendChild(nav);
 

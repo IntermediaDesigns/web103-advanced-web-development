@@ -29,15 +29,18 @@ const renderGift = async () => {
 
         // Set submittedBy
         const submittedBy = document.getElementById('submittedBy');
-        if (submittedBy) submittedBy.textContent = `Submitted by: ${gift.submittedBy}`;
+        if (submittedBy) submittedBy.textContent = gift.submittedby;
 
         // Set submittedOn
         const submittedOn = document.getElementById('submittedOn');
-        if (submittedOn) submittedOn.textContent = `Submitted on: ${gift.submittedOn}`;
+        if (submittedOn) {
+            const date = new Date(gift.submittedon);
+            submittedOn.textContent = date.toLocaleDateString();
+        }
 
         // Set pricePoint
         const pricePoint = document.getElementById('pricePoint');
-        if (pricePoint) pricePoint.textContent = `Price: ${gift.pricePoint}`;
+        if (pricePoint) pricePoint.textContent = gift.pricepoint;
 
         // Set audience
         const audience = document.getElementById('audience');
