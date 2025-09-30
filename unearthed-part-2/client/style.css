@@ -110,7 +110,7 @@ main {
 /* Professional Grid Layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -144,7 +144,7 @@ article::before {
 
 /* Card Image Section */
 .card-image {
-  height: 250px;
+  min-height: 450px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

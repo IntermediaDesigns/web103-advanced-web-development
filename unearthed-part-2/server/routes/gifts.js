@@ -128,8 +128,8 @@ router.get('/:giftId', (req, res) => {
 
       .image-container img {
         width: 100%;
-        max-width: 350px;
-        max-height: 380px;
+        max-width: 550px;
+        max-height: 580px;
         height: auto;
         object-fit: cover;
         border-radius: 1rem;
