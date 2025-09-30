@@ -261,8 +261,8 @@ router.get('/:giftId', (req, res) => {
               // Set up backup images for specific gifts
               const backupImages = {
                 2: '/nikepanda.jpg',          // Nike Panda Dunks
-                3: '/legoflower.webp',        // Lego Flower Bouquet Kit
-                7: '/RazerKittyHeadset.webp', // Razer Kitty Headset
+                8: '/legoflower.webp',        // Lego Flower Bouquet Kit
+                5: '/RazerKittyHeadset.webp', // Razer Kitty Headset
                 9: '/switchlite.webp'         // Nintendo Switch Lite
               };
 
