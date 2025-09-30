@@ -5,6 +5,14 @@ const GiftDetails = () => {
   const [gift, setGift] = useState(null)
   const { id } = useParams()
 
+  // Backup images matched by gift name
+  const backupImagesByName = {
+    'Lego Flower Bouquet Kit': '/legoflower.webp',
+    'Nintendo Switch Lite': '/switchlite.webp',
+    'Nike Panda Dunks': '/nikepanda.jpg',
+    'Razer Kitty Headset': '/RazerKittyHeadset.webp'
+  }
+
   useEffect(() => {
     // Step 3: Fetch gift by ID
     const fetchGiftById = async () => {
@@ -20,11 +28,14 @@ const GiftDetails = () => {
     return <div>Loading...</div>
   }
 
+  // Check if this gift has a backup image by matching its name
+  const imageUrl = backupImagesByName[gift.name] || gift.image
+
   return (
     <main className="gift-details-container">
       <div className="gift-details-content">
         <div className="image-container">
-          <img src={gift.image} alt={gift.name} />
+          <img src={imageUrl} alt={gift.name} />
         </div>
         <div className="gift-info">
           <h2>{gift.name}</h2>
