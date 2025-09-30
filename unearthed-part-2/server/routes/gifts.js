@@ -25,7 +25,7 @@ router.get('/:giftId', (req, res) => {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fuchsia.min.css"
     />
-    <link rel="stylesheet" crossorigin href="/assets/index-DeziHGkM.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CxWm0lOG.css">
     <style>
       :root {
         --primary-color: #2563eb;
@@ -257,7 +257,25 @@ router.get('/:giftId', (req, res) => {
 
           if (gift) {
             const img = document.getElementById('image');
-            if (img) img.src = gift.image;
+            if (img) {
+              // Set up backup images for specific gifts
+              const backupImages = {
+                2: '/nikepanda.jpg',          // Nike Panda Dunks
+                3: '/legoflower.webp',        // Lego Flower Bouquet Kit
+                7: '/RazerKittyHeadset.webp', // Razer Kitty Headset
+                9: '/switchlite.webp'         // Nintendo Switch Lite
+              };
+
+              // Try original image first, fallback to backup if it fails
+              img.src = gift.image;
+              img.onerror = function() {
+                if (backupImages[gift.id]) {
+                  console.log('Using backup image for gift ID:', gift.id);
+                  this.src = backupImages[gift.id];
+                  this.onerror = null; // Prevent infinite loop
+                }
+              };
+            }
 
             const name = document.getElementById('name');
             if (name) name.textContent = gift.name;

@@ -22,7 +22,29 @@ const renderGifts = async () => {
 
       const topContainer = document.createElement('div');
       topContainer.className = 'card-image';
-      topContainer.style.backgroundImage = `url(${gift.image})`;
+
+      // Set up backup images for specific gifts
+      const backupImages = {
+        2: '/nikepanda.jpg',          // Nike Panda Dunks
+        3: '/legoflower.webp',        // Lego Flower Bouquet Kit
+        7: '/RazerKittyHeadset.webp', // Razer Kitty Headset
+        9: '/switchlite.webp'         // Nintendo Switch Lite
+      };
+
+      // Try to load original image, fallback to backup if it fails
+      const testImg = new Image();
+      testImg.onload = function() {
+        topContainer.style.backgroundImage = `url(${gift.image})`;
+      };
+      testImg.onerror = function() {
+        if (backupImages[gift.id]) {
+          console.log('Using backup image for gift ID:', gift.id);
+          topContainer.style.backgroundImage = `url(${backupImages[gift.id]})`;
+        } else {
+          topContainer.style.backgroundImage = `url(${gift.image})`;
+        }
+      };
+      testImg.src = gift.image;
 
       const bottomContainer = document.createElement('div');
       bottomContainer.className = 'card-content';
