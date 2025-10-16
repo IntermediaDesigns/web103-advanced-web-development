@@ -25,6 +25,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
+  min-height: 100%;
 }
 
 body {
@@ -32,11 +34,15 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   background: var(--background) !important;
   color: var(--text-primary);
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 body::after {
+  display: none !important;
+}
+
+body::before {
   display: none !important;
 }
 
@@ -44,8 +50,15 @@ footer {
   display: none !important;
 }
 
+#root {
+  min-height: 100vh;
+  background: var(--background);
+}
+
 .App {
   min-height: 100vh;
+  background: var(--background);
+
 }
 
 /* Header Styling */
@@ -144,8 +157,9 @@ header {
 main {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem 2rem;
   min-height: calc(100vh - 100px);
+  background: var(--background);
 }
 
 /* Gifts Grid */
